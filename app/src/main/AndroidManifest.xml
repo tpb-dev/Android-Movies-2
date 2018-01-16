@@ -15,6 +15,7 @@
         <activity
             android:name=".MainActivity"
             android:label="Android Movies 2"
+            android:launchMode="singleTop"
             android:theme="@style/Base.Theme.AppCompat.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

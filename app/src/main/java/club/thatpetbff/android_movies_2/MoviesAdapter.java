@@ -41,11 +41,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     private final OnItemClickListener listener;
 
-    public List<Movie> getmMovieList() {
+    public ArrayList<Movie> getmMovieList() {
         return mMovieList;
     }
 
-    public void setmMovieList(List<Movie> mMovieList) {
+    public void setmMovieList(ArrayList<Movie> mMovieList) {
         this.mMovieList = mMovieList;
     }
 
@@ -65,7 +65,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         this.mContext = mContext;
     }
 
-    private List<Movie> mMovieList;
+    private ArrayList<Movie> mMovieList;
     private LayoutInflater mInflater;
     private Context mContext;
 

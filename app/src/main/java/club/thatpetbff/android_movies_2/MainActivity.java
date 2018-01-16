@@ -60,10 +60,16 @@ public class MainActivity extends AppCompatActivity {
         });
         mRecyclerView.setAdapter(mAdapter);
 
-        OkHttpHandler okHttpHandler= new OkHttpHandler();
-        okHttpHandler.execute(urlPopular);
-
-        popularity = 0;
+        if(savedInstanceState==null) {
+            //initiating network operation only if savedInstanceState is null
+            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            okHttpHandler.execute(urlPopular);
+            popularity = 0;
+        } else {
+            //restoring the list of movies and the scroll position from the passed in bundle to the onCreate method
+            mAdapter.setMovieList((ArrayList<Movie>) savedInstanceState.getSerializable("movies"));
+            mRecyclerView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable("scroll_position"));
+        }
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -78,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("movies",mAdapter.getmMovieList());
+        outState.putParcelable("scroll_position",mRecyclerView.getLayoutManager().onSaveInstanceState());
+        super.onSaveInstanceState(outState);
+    }
 
 
     public void sortArray() {
